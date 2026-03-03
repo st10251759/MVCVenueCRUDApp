@@ -1,0 +1,43 @@
+﻿@{
+    ViewData["Title"] = "Home";
+}
+
+<div class="hero">
+    <h1>Find Your Perfect Venue</h1>
+    <p>Browse and manage event spaces — from intimate halls to grand arenas — all in one place.</p>
+    <a asp-controller="Venues" asp-action="Index" class="btn-hero">Browse Venues</a>
+</div>
+
+
+<div class="row g-4 mb-4">
+    <div class="col-md-4">
+        <div class="card feature-card h-100">
+            <img src="~/img/card-browse.jpg" alt="Browse venues" />
+            <div class="card-body">
+                <h5 class="card-title">Browse Venues</h5>
+                <p class="card-text">View all available venues, their locations, and capacity at a glance.</p>
+                <a asp-controller="Venues" asp-action="Index" class="btn btn-primary btn-sm">View All</a>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card feature-card h-100">
+            <img src="~/img/card-add.jpg" alt="Add a venue" />
+            <div class="card-body">
+                <h5 class="card-title">Add a Venue</h5>
+                <p class="card-text">Register a new venue by providing its name, address, and capacity.</p>
+                <a asp-controller="Venues" asp-action="Create" class="btn btn-primary btn-sm">Add New</a>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card feature-card h-100">
+            <img src="~/img/card-manage.jpg" alt="Manage venues" />
+            <div class="card-body">
+                <h5 class="card-title">Manage Venues</h5>
+                <p class="card-text">Edit details or remove venues that are no longer available.</p>
+                <a asp-controller="Venues" asp-action="Index" class="btn btn-primary btn-sm">Manage</a>
+            </div>
+        </div>
+    </div>
+</div>

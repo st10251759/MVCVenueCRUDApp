@@ -1,0 +1,121 @@
+﻿@model MVCFirstBasicApp.Models.Venue
+
+@{
+    ViewData["Title"] = "Add Venue";
+}
+
+<div class="row justify-content-center">
+    <div class="col-lg-6 col-md-8">
+
+        @* PAGE HEADER *@
+        <div class="mb-4">
+            <h1 class="page-heading">
+                <i class="fa-solid fa-plus-circle me-2"></i>Add a New Venue
+            </h1>
+            <p class="text-muted">Fill in the details below to register a new venue.</p>
+        </div>
+
+        @* FORM CARD *@
+        <div class="card shadow-sm border-0 rounded-3">
+
+            @* CARD HEADER BANNER *@
+            <div class="card-header venue-card-header rounded-top-3 py-3 px-4">
+                <h5 class="mb-0 text-white fw-bold">
+                    <i class="fa-solid fa-building me-2"></i>New Venue
+                </h5>
+            </div>
+
+            <div class="card-body p-4">
+
+                <form asp-action="Create" method="post">
+                    @Html.AntiForgeryToken()
+
+                    @* Model-level validation errors *@
+                    <div asp-validation-summary="ModelOnly" class="alert alert-danger py-2 small mb-3"></div>
+
+                    @* VENUE NAME *@
+                    @*
+                    asp-for binds this input to the Venue.name property.
+                    Model binding will automatically map the submitted
+                    form value back into the Venue object in the POST action.
+                    [Required] and [StringLength] rules are enforced via ModelState.IsValid.
+                    *@
+                    <div class="mb-3">
+                        <label asp-for="name" class="form-label fw-semibold">
+                            <i class="fa-solid fa-tag me-1 text-success"></i> Venue Name
+                        </label>
+                        <input asp-for="name"
+                               class="form-control"
+                               placeholder="e.g. Grand Hall" />
+                        <span asp-validation-for="name" class="text-danger small"></span>
+                    </div>
+
+                    @* ADDRESS *@
+                    @*
+                    Address is optional (no [Required] in the model)
+                    but still validated for [StringLength(100)].
+                    *@
+                    <div class="mb-3">
+                        <label asp-for="Address" class="form-label fw-semibold">
+                            <i class="fa-solid fa-location-dot me-1 text-success"></i> Address
+                        </label>
+                        <input asp-for="Address"
+                               class="form-control"
+                               placeholder="e.g. 123 Main Street, Durban" />
+                        <span asp-validation-for="Address" class="text-danger small"></span>
+                    </div>
+
+                    @* CAPACITY *@
+                    @*
+                    venueCapacity is validated by [Range(1, 20000)].
+                    type="number" ensures the browser only allows numeric input.
+                    Server-side validation via ModelState.IsValid is still the
+                    authoritative check — never rely on client-side alone.
+                    *@
+                    <div class="mb-4">
+                        <label asp-for="venueCapacity" class="form-label fw-semibold">
+                            <i class="fa-solid fa-users me-1 text-success"></i> Capacity
+                        </label>
+                        <input asp-for="venueCapacity"
+                               class="form-control"
+                               type="number"
+                               min="1"
+                               max="20000"
+                               placeholder="e.g. 500" />
+                        <div class="form-text">
+                            <i class="fa-solid fa-circle-info me-1"></i>
+                            Must be between 1 and 20,000 people.
+                        </div>
+                        <span asp-validation-for="venueCapacity" class="text-danger small"></span>
+                    </div>
+
+                    @* FORM ACTIONS *@
+                    <div class="d-flex justify-content-between align-items-center">
+                        <a asp-action="Index" class="btn btn-outline-secondary">
+                            <i class="fa-solid fa-arrow-left me-1"></i> Back to Venues
+                        </a>
+                        <button type="submit" class="btn btn-primary px-4">
+                            <i class="fa-solid fa-floppy-disk me-1"></i> Save Venue
+                        </button>
+                    </div>
+
+                </form>
+
+            </div>
+        </div>
+
+    </div>
+</div>
+
+@section Scripts {
+    @*
+        Client-side validation scripts.
+        These work together with your DataAnnotations to validate
+        inputs in the browser before the form is even submitted,
+        giving instant feedback to the user without a page reload.
+        Server-side validation in the controller still runs as the final check.
+    *@
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

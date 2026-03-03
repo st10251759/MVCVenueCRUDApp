@@ -1,0 +1,78 @@
+﻿@model List<MVCFirstBasicApp.Models.Venue>
+
+@{
+    ViewData["Title"] = "Venues";
+}
+
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <h1 class="page-heading mb-0">
+        <i class="fa-solid fa-building me-2"></i>Venues
+    </h1>
+    <a asp-action="Create" class="btn btn-primary">
+        <i class="fa-solid fa-plus me-1"></i> Add New Venue
+    </a>
+</div>
+
+@if (!Model.Any())
+{
+    <div class="text-center py-5 text-muted">
+        <i class="fa-solid fa-building-circle-xmark fa-3x mb-3" style="color: var(--green-light);"></i>
+        <p class="fs-5">No venues found. Add your first venue to get started.</p>
+        <a asp-action="Create" class="btn btn-primary mt-2">
+            <i class="fa-solid fa-plus me-1"></i> Add a Venue
+        </a>
+    </div>
+}
+else
+{
+    <p class="text-muted mb-3">
+        <i class="fa-solid fa-list me-1"></i>
+        Showing <strong>@Model.Count</strong> venue@(Model.Count == 1 ? "" : "s")
+    </p>
+
+    <div class="table-responsive">
+        <table class="table table-hover align-middle">
+            <thead>
+                <tr>
+                    <th><i class="fa-solid fa-tag me-1"></i> Name</th>
+                    <th><i class="fa-solid fa-location-dot me-1"></i> Address</th>
+                    <th><i class="fa-solid fa-users me-1"></i> Capacity</th>
+                    <th class="text-center">Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var venue in Model)
+                {
+                    <tr>
+                        <td class="fw-semibold">@venue.name</td>
+                        <td class="text-muted">@venue.Address</td>
+                        <td>
+                            <span class="badge bg-success-subtle text-success-emphasis rounded-pill px-3 py-1">
+                                <i class="fa-solid fa-user me-1"></i>@venue.venueCapacity.ToString("N0")
+                            </span>
+                        </td>
+                        <td class="text-center">
+                            <div class="d-flex justify-content-center gap-2">
+                                <a asp-action="Details" asp-route-id="@venue.id"
+                                   class="btn btn-sm btn-outline-secondary"
+                                   title="View Details">
+                                    <i class="fa-solid fa-eye"></i>
+                                </a>
+                                <a asp-action="Edit" asp-route-id="@venue.id"
+                                   class="btn btn-sm btn-outline-primary"
+                                   title="Edit Venue">
+                                    <i class="fa-solid fa-pen-to-square"></i>
+                                </a>
+                                <a asp-action="Delete" asp-route-id="@venue.id"
+                                   class="btn btn-sm btn-outline-danger"
+                                   title="Delete Venue">
+                                    <i class="fa-solid fa-trash"></i>
+                                </a>
+                            </div>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+}

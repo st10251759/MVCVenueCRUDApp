@@ -1,0 +1,98 @@
+﻿@model MVCFirstBasicApp.Models.Venue
+
+@{
+    ViewData["Title"] = "Delete Venue";
+}
+
+<div class="row justify-content-center">
+    <div class="col-lg-6 col-md-8">
+
+        @* PAGE HEADER *@
+        <div class="mb-4">
+            <h1 class="page-heading">
+                <i class="fa-solid fa-trash me-2"></i>Delete Venue
+            </h1>
+            <p class="text-muted">Please review the venue details before confirming deletion.</p>
+        </div>
+
+        @* WARNING ALERT *@
+        <div class="alert alert-warning d-flex align-items-center gap-3 rounded-3 mb-4" role="alert">
+            <i class="fa-solid fa-triangle-exclamation fa-lg flex-shrink-0"></i>
+            <div>
+                <strong>This action cannot be undone.</strong>
+                Deleting this venue will permanently remove it from the system.
+            </div>
+        </div>
+
+        @* VENUE DETAILS CARD *@
+        <div class="card shadow-sm border-0 rounded-3 mb-4">
+
+            @* CARD HEADER — red toned to signal destructive action *@
+            <div class="card-header venue-delete-header rounded-top-3 py-3 px-4">
+                <h5 class="mb-0 text-white fw-bold">
+                    <i class="fa-solid fa-building me-2"></i>@Model.name
+                </h5>
+            </div>
+
+            <div class="card-body p-4">
+
+                @* NAME *@
+                <div class="detail-row mb-3 pb-3 border-bottom">
+                    <div class="detail-label">
+                        <i class="fa-solid fa-tag me-2 text-success"></i>
+                        <span class="fw-semibold">Venue Name</span>
+                    </div>
+                    <div class="detail-value mt-1 ps-4 text-muted">
+                        @Model.name
+                    </div>
+                </div>
+
+                @* ADDRESS *@
+                <div class="detail-row mb-3 pb-3 border-bottom">
+                    <div class="detail-label">
+                        <i class="fa-solid fa-location-dot me-2 text-success"></i>
+                        <span class="fw-semibold">Address</span>
+                    </div>
+                    <div class="detail-value mt-1 ps-4 text-muted">
+                        @Model.Address
+                    </div>
+                </div>
+
+                @* CAPACITY *@
+                <div class="detail-row mb-2">
+                    <div class="detail-label">
+                        <i class="fa-solid fa-users me-2 text-success"></i>
+                        <span class="fw-semibold">Capacity</span>
+                    </div>
+                    <div class="detail-value mt-1 ps-4">
+                        <span class="badge rounded-pill px-3 py-2 venue-capacity-badge">
+                            <i class="fa-solid fa-user me-1"></i>
+                            @Model.venueCapacity.ToString("N0") people
+                        </span>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        @* CONFIRM DELETE FORM *@
+        @*
+        Posts to DeleteConfirmed to avoid C# method signature
+        conflict between GET Delete(int id) and POST Delete(int id)
+        *@
+        <form asp-action="DeleteConfirmed" method="post">
+            @Html.AntiForgeryToken()
+            <input type="hidden" asp-for="id" />
+
+            <div class="d-flex justify-content-between align-items-center">
+                <a asp-action="Index" class="btn btn-outline-secondary">
+                    <i class="fa-solid fa-arrow-left me-1"></i> Cancel
+                </a>
+                <button type="submit" class="btn btn-danger px-4">
+                    <i class="fa-solid fa-trash me-1"></i> Yes, Delete Venue
+                </button>
+            </div>
+        </form>
+
+    </div>
+</div>

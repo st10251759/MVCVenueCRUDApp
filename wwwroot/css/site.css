@@ -1,0 +1,316 @@
+/* =============================================
+   ROOT VARIABLES — Green Theme
+   ============================================= */
+:root {
+    --green-dark: #1a4731;
+    --green-mid: #2d7a4f;
+    --green-light: #4caf80;
+    --green-pale: #e8f5ee;
+    --accent: #f4a623; /* warm amber complement */
+    --text-dark: #1a1a1a;
+    --text-muted: #6c757d;
+    --white: #ffffff;
+}
+
+/* =============================================
+   BASE
+   ============================================= */
+html {
+    font-size: 14px;
+    position: relative;
+    min-height: 100%;
+}
+
+@media (min-width: 768px) {
+    html {
+        font-size: 16px;
+    }
+}
+
+body {
+    margin-bottom: 70px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f9fbfa;
+    color: var(--text-dark);
+}
+
+/* =============================================
+   NAVBAR
+   ============================================= */
+.navbar-custom {
+    background: linear-gradient(135deg, var(--green-dark) 0%, var(--green-mid) 100%);
+    box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+    padding: 0.75rem 1rem;
+}
+
+    .navbar-custom .navbar-brand {
+        color: var(--white) !important;
+        font-size: 1.4rem;
+        font-weight: 700;
+        letter-spacing: 0.5px;
+    }
+
+        .navbar-custom .navbar-brand span {
+            color: var(--accent);
+        }
+
+    .navbar-custom .nav-link {
+        color: rgba(255,255,255,0.85) !important;
+        font-weight: 500;
+        padding: 0.5rem 1rem;
+        border-radius: 4px;
+        transition: background 0.2s, color 0.2s;
+    }
+
+        .navbar-custom .nav-link:hover,
+        .navbar-custom .nav-link.active {
+            background-color: rgba(255,255,255,0.15);
+            color: var(--white) !important;
+        }
+
+    .navbar-custom .navbar-toggler {
+        border-color: rgba(255,255,255,0.5);
+    }
+
+    .navbar-custom .navbar-toggler-icon {
+        filter: invert(1);
+    }
+
+/* =============================================
+   HERO SECTION (Home page)
+   ============================================= */
+.hero {
+    background: linear-gradient(rgba(26,71,49,0.65), rgba(26,71,49,0.65)), url('/img/hero-venue.jpg') center center / cover no-repeat;
+    color: var(--white);
+    padding: 5rem 2rem;
+    border-radius: 12px;
+    margin-bottom: 2.5rem;
+    text-align: center;
+}
+
+    .hero h1 {
+        font-size: 2.8rem;
+        font-weight: 700;
+        margin-bottom: 1rem;
+        text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+    }
+
+    .hero p {
+        font-size: 1.15rem;
+        opacity: 0.9;
+        max-width: 560px;
+        margin: 0 auto 1.5rem;
+    }
+
+    .hero .btn-hero {
+        background-color: var(--accent);
+        color: var(--white);
+        border: none;
+        padding: 0.7rem 2rem;
+        border-radius: 6px;
+        font-size: 1rem;
+        font-weight: 600;
+        text-decoration: none;
+        transition: background 0.2s, transform 0.15s;
+        display: inline-block;
+    }
+
+        .hero .btn-hero:hover {
+            background-color: #d4891a;
+            transform: translateY(-2px);
+        }
+
+/* =============================================
+   FEATURE CARDS (Home page)
+   ============================================= */
+.feature-card {
+    border: none;
+    border-radius: 10px;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+    transition: transform 0.2s, box-shadow 0.2s;
+    overflow: hidden;
+}
+
+    .feature-card:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 6px 20px rgba(0,0,0,0.12);
+    }
+
+    .feature-card img {
+        height: 180px;
+        object-fit: cover;
+        width: 100%;
+    }
+
+    .feature-card .card-body {
+        padding: 1.25rem;
+    }
+
+    .feature-card .card-title {
+        font-weight: 700;
+        color: var(--green-dark);
+    }
+
+    .feature-card .card-text {
+        color: var(--text-muted);
+        font-size: 0.92rem;
+    }
+
+/* =============================================
+   BUTTONS
+   ============================================= */
+.btn-primary {
+    background-color: var(--green-mid);
+    border-color: var(--green-mid);
+}
+
+    .btn-primary:hover {
+        background-color: var(--green-dark);
+        border-color: var(--green-dark);
+    }
+
+.btn:focus, .btn:active:focus,
+.btn-link.nav-link:focus,
+.form-control:focus,
+.form-check-input:focus {
+    box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem var(--green-light);
+}
+
+/* =============================================
+   FOOTER
+   ============================================= */
+.footer {
+    background-color: var(--green-dark);
+    color: rgba(255,255,255,0.75);
+    padding: 1rem 0;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    font-size: 0.875rem;
+}
+
+    .footer a {
+        color: var(--accent);
+        text-decoration: none;
+    }
+
+        .footer a:hover {
+            color: var(--white);
+            text-decoration: underline;
+        }
+
+/* =============================================
+   TABLES (Venue list)
+   ============================================= */
+.table thead {
+    background-color: var(--green-mid);
+    color: var(--white);
+}
+
+.table tbody tr:hover {
+    background-color: var(--green-pale);
+}
+
+/* =============================================
+   PAGE HEADINGS
+   ============================================= */
+.page-heading {
+    color: var(--green-dark);
+    font-weight: 700;
+    border-left: 4px solid var(--green-light);
+    padding-left: 0.75rem;
+    margin-bottom: 1.25rem;
+}
+
+/* Venue index — capacity badge */
+.bg-success-subtle {
+    background-color: var(--green-pale) !important;
+}
+
+.text-success-emphasis {
+    color: var(--green-dark) !important;
+}
+
+/* Action buttons in table */
+.table .btn-outline-primary {
+    border-color: var(--green-mid);
+    color: var(--green-mid);
+}
+
+    .table .btn-outline-primary:hover {
+        background-color: var(--green-mid);
+        color: var(--white);
+    }
+
+/* Subtle row separator */
+.table tbody tr {
+    border-bottom: 1px solid #e8f5ee;
+}
+
+
+/* Form card */
+.card {
+    border-radius: 10px;
+}
+
+.card-body {
+    background-color: var(--white);
+}
+
+/* Form control focus — green outline */
+.form-control:focus {
+    border-color: var(--green-light);
+    box-shadow: 0 0 0 0.2rem rgba(76, 175, 128, 0.25);
+}
+
+/* Form hint text */
+.form-text {
+    color: var(--text-muted);
+    font-size: 0.82rem;
+}
+
+/* Validation error text */
+.text-danger.small {
+    font-size: 0.82rem;
+}
+
+/* Details — card header banner */
+.venue-card-header {
+    background: linear-gradient(135deg, var(--green-dark) 0%, var(--green-mid) 100%);
+}
+
+/* Details — capacity badge */
+.venue-capacity-badge {
+    background-color: var(--green-pale);
+    color: var(--green-dark);
+    font-size: 0.9rem;
+    font-weight: 600;
+}
+
+/* Details — label/value rows */
+.detail-label {
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    color: var(--green-dark);
+}
+
+.detail-value {
+    font-size: 1rem;
+}
+
+/* Delete page — red card header */
+.venue-delete-header {
+    background: linear-gradient(135deg, #7f1d1d 0%, #b91c1c 100%);
+}
+
+/* Delete page — warning alert */
+.alert-warning {
+    background-color: #fff8e1;
+    border-color: #f4a623;
+    color: #7a4f00;
+}
+
+    .alert-warning .fa-triangle-exclamation {
+        color: #f4a623;
+    }

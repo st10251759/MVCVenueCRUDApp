@@ -1,0 +1,108 @@
+﻿@model MVCFirstBasicApp.Models.Venue
+
+@{
+    ViewData["Title"] = "Edit Venue";
+}
+
+<div class="row justify-content-center">
+    <div class="col-lg-6 col-md-8">
+
+        @* PAGE HEADER *@
+        <div class="mb-4">
+            <h1 class="page-heading">
+                <i class="fa-solid fa-pen-to-square me-2"></i>Edit Venue
+            </h1>
+            <p class="text-muted">Update the details for <strong>@Model.name</strong> below.</p>
+        </div>
+
+        @* FORM CARD *@
+        <div class="card shadow-sm border-0 rounded-3">
+
+            @* CARD HEADER BANNER *@
+            <div class="card-header venue-card-header rounded-top-3 py-3 px-4">
+                <h5 class="mb-0 text-white fw-bold">
+                    <i class="fa-solid fa-building me-2"></i>@Model.name
+                </h5>
+            </div>
+
+            <div class="card-body p-4">
+
+                <form asp-action="Edit" method="post">
+                    @Html.AntiForgeryToken()
+
+                    @* Preserve venue id on POST *@
+                    <input type="hidden" asp-for="id" />
+
+                    @* Validation summary *@
+                    <div asp-validation-summary="ModelOnly" class="alert alert-danger py-2 small mb-3"></div>
+
+                    @* VENUE NAME *@
+                    <div class="mb-3">
+                        <label asp-for="name" class="form-label fw-semibold">
+                            <i class="fa-solid fa-tag me-1 text-success"></i> Venue Name
+                        </label>
+                        <input asp-for="name"
+                               class="form-control"
+                               placeholder="e.g. Grand Hall" />
+                        <span asp-validation-for="name" class="text-danger small"></span>
+                    </div>
+
+                    @* ADDRESS *@
+                    <div class="mb-3">
+                        <label asp-for="Address" class="form-label fw-semibold">
+                            <i class="fa-solid fa-location-dot me-1 text-success"></i> Address
+                        </label>
+                        <input asp-for="Address"
+                               class="form-control"
+                               placeholder="e.g. 123 Main Street, Durban" />
+                        <span asp-validation-for="Address" class="text-danger small"></span>
+                    </div>
+
+                    @* CAPACITY *@
+                    <div class="mb-4">
+                        <label asp-for="venueCapacity" class="form-label fw-semibold">
+                            <i class="fa-solid fa-users me-1 text-success"></i> Capacity
+                        </label>
+                        <input asp-for="venueCapacity"
+                               class="form-control"
+                               type="number"
+                               placeholder="e.g. 500" />
+                        <div class="form-text">
+                            <i class="fa-solid fa-circle-info me-1"></i>
+                            Maximum capacity is 20,000 people.
+                        </div>
+                        <span asp-validation-for="venueCapacity" class="text-danger small"></span>
+                    </div>
+
+                    @* FORM ACTIONS *@
+                    <div class="d-flex justify-content-between align-items-center">
+                        <a asp-action="Index" class="btn btn-outline-secondary">
+                            <i class="fa-solid fa-arrow-left me-1"></i> Back to Venues
+                        </a>
+                        <button type="submit" class="btn btn-primary px-4">
+                            <i class="fa-solid fa-floppy-disk me-1"></i> Save Changes
+                        </button>
+                    </div>
+
+                </form>
+
+            </div>
+        </div>
+
+        @* DANGER ZONE *@
+        <div class="card border-danger border-opacity-50 rounded-3 mt-4">
+            <div class="card-body px-4 py-3 d-flex justify-content-between align-items-center">
+                <div>
+                    <p class="mb-0 fw-semibold text-danger">
+                        <i class="fa-solid fa-triangle-exclamation me-1"></i> Danger Zone
+                    </p>
+                    <p class="mb-0 text-muted small">Permanently delete this venue.</p>
+                </div>
+                <a asp-action="Delete" asp-route-id="@Model.id" class="btn btn-outline-danger btn-sm px-3">
+                    <i class="fa-solid fa-trash me-1"></i> Delete
+                </a>
+            </div>
+        </div>
+
+    </div>
+</div>
